@@ -1,0 +1,15 @@
+#navlink-mypage {
+	background: rgb(65, 65, 65);
+}
+
+@media (min-width: 1024px) {
+	#description {
+		margin:8px;
+	}
+}
+
+@media (max-width: 1024px) {
+	#description {
+		margin:8px;
+	}
+}

@@ -1,0 +1,30 @@
+extends layout
+
+block head
+	link(href='/css/mypage.css', rel='stylesheet')
+
+block content
+	article(id='main-wrapper')
+		div(id='description')
+			h1 Resultats
+			label Moyenne - 
+			span#average 100%
+			br
+			label Tests Rapides - 
+			span#quicktest-count 2
+			br
+			label Examens - 
+			span#test-count 1
+			br
+			h2 Examens Precedents
+			table
+				tbody
+					tr
+						td Test Rapide 1
+						td 60%
+					tr
+						td Test Rapide 2
+						td 30%
+					tr
+						td Examen
+						td 100%

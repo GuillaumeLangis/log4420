@@ -1,7 +1,30 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+		title= title
+		link(href='/css/polyquiz.css', rel='stylesheet')
+		block head
+
+	body
+		header
+			div(class='navimage')
+				img(src='/images/logo.png')
+			div(class='navtitle')
+				b Poly Questionnaire
+			div(id='navlink-home', class='navlink selected')
+				a(href='/') Acceuil
+			div(id='navlink-mypage', class='navlink')
+				a(href='/mypage') Tableau de Bord
+			div(id='navlink-instructions', class='navlink')
+				a(href='/instructions') Instructions
+			div(id='user-info', class='navlink')
+				div(id='username') John Smith
+				div(id='logout')
+					a(href='/logout')
+						img(src='/images/logout.png')
+
+		block content
+
+		footer
+			div Guillaume Langis 1579724
+			div Maxime Perusse 1685946
