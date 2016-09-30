@@ -11,13 +11,19 @@ html
 				img(src='/images/logo.png')
 			div(class='navtitle')
 				b Poly Questionnaire
-			div(id='navlink-home', class='navlink selected')
-				a(href='/') Acceuil
-			div(id='navlink-mypage', class='navlink')
-				a(href='/mypage') Tableau de Bord
-			div(id='navlink-instructions', class='navlink')
-				a(href='/instructions') Instructions
-			div(id='user-info', class='navlink')
+			div.navlink#navlink-home
+				a(href='/')
+					img.navicon(src='/images/home.png')
+					div.navlink-label Acceuil
+			div.navlink#navlink-mypage
+				a(href='/mypage')
+					img.navicon(src='/images/calendar.png')
+					div.navlink-label Tableau de Bord
+			div.navlink#navlink-instructions
+				a(href='/instructions')
+					img.navicon(src='/images/info.png')
+					div.navlink-label Instructions
+			div(id='user-info')
 				div(id='username') John Smith
 				div(id='logout')
 					a(href='/logout')

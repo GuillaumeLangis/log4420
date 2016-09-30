@@ -1,15 +1,99 @@
+/* blue #5d5dd5 */
+/* black #4d4d4d */
+/* grey #f2f2f2 */
+
 #navlink-mypage {
-	background: rgb(65, 65, 65);
+	background: #5d5dd5;
 }
 
+/* SINGLECELL */
+.single-cell {
+	border-radius:12px;
+	background: #f2f2f2;
+	height:52px;
+	margin-bottom:8px;
+}
+
+.mypage-label {
+	float:left;
+	margin-top:16px;
+	margin-left:8px;
+
+	font-weight: bold;
+}
+
+.mypage-link {
+	float:right;
+
+	width:33%;
+
+	border-radius: 12px;
+	background: #4d4d4d;
+	height:52px;
+
+	color:white;
+	text-decoration: none;
+}
+
+.mypage-link > div {
+	margin-top:16px;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	text-align:center;
+}
+
+#exam-type {
+	margin-top:0px;
+	cursor:pointer;
+
+	width:33%;
+}
+#exam-type select {
+	cursor:pointer;
+
+	border-radius: 12px;
+	height:52px;
+	width:100%;
+}
+#exam-type option {
+	text-align:center;
+}
+
+
+.mypage-link:hover {
+	background: #5d5dd5;
+}
+
+/* MULTICELL */
+.multi-cell {
+	border-radius:12px;
+	background: #f2f2f2;
+	margin-bottom:8px;
+
+	padding:8px;
+}
+.multi-cell-wrapper {
+
+}
+.multi-cell-header {
+	font-weight: bold;
+}
+.multi-cell-content {
+	margin-top:4px;
+	margin-left:8px;
+	margin-bottom:16px;
+}
+.multi-cell td {
+	padding:4px;
+}
+.results-label {
+
+}
+
+
 @media (min-width: 1024px) {
-	#description {
-		margin:8px;
-	}
 }
 
 @media (max-width: 1024px) {
-	#description {
-		margin:8px;
-	}
 }
