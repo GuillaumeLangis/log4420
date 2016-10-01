@@ -1,9 +1,27 @@
-/* blue #5d5dd5 */
+/* blue #d35e5e */
 /* black #4d4d4d */
 /* grey #f2f2f2 */
 
 #navlink-mypage {
-	background: #5d5dd5;
+	background: #d35e5e;
+}
+#main-wrapper {
+	margin-right:0px;
+}
+
+#summary {
+	float:left;
+}
+
+@media (min-width: 1024px) {
+	#summary {
+		width:calc(100% - 216px);
+	}
+}
+@media (max-width: 1023px) {
+	#summary {
+		width:calc(100% - 216px);
+	}
 }
 
 /* SINGLECELL */
@@ -62,7 +80,7 @@
 
 
 .mypage-link:hover {
-	background: #5d5dd5;
+	background: #d35e5e;
 }
 
 /* MULTICELL */
@@ -70,13 +88,13 @@
 	border-radius:12px;
 	background: #f2f2f2;
 	margin-bottom:8px;
-
-	padding:8px;
 }
 .multi-cell-wrapper {
 
 }
 .multi-cell-header {
+	margin-left:8px;
+	padding-top:8px;
 	font-weight: bold;
 }
 .multi-cell-content {
@@ -92,8 +110,120 @@
 }
 
 
+/* TABLES */
+table {
+	width:98%;
+	border-collapse: collapse;
+
+	margin-bottom:16px;
+}
+td.results-value, td.value {
+	text-align:right;
+}
+tr.total {
+	border-top:1px solid grey;
+	font-weight: bold;
+}
+
 @media (min-width: 1024px) {
 }
 
 @media (max-width: 1024px) {
+}
+
+
+#statistics {
+	float:right;
+	width:200px;
+
+	border-radius: 12px 0px 0px 12px;
+	background: #f2f2f2;
+}
+#statistics-content {
+	margin:16px;
+}
+#statistics table {
+	width:100%;
+	border-collapse: collapse;
+	margin-bottom: 32px;
+}
+
+
+
+/* MODAL  https://codepen.io/dsheiko/pen/jCcld?editors=1100#0 */
+#modal-bg {
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.6);
+}
+
+/* Modal window sample styles */
+/* Vertical centering trick http://css-tricks.com/centering-in-the-unknown/ */
+.modal::before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.target {
+	display: block;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 100;
+	text-align: center;
+	display: none;
+}
+.modal > .content {
+	text-align: left;
+	display: inline-block;
+	
+}
+#details-content {
+	background-color: #f2f2f2;
+	border-radius: 12px;
+	color: black;
+
+	min-width: 300px;
+
+	position: relative;
+	padding: 20px;
+}
+
+.modal > .content .close-btn {
+	position:fixed;
+	top:0;
+	right:0;
+	width:100%;
+	height:100%;
+}
+
+ /* Behaviour on legacy browsers */
+.target:target + .modal {
+    display: block;
+}
+
+/* Behavior on modern browsers */
+:root .modal {
+	display: block;
+	background-color: transparent;
+	
+	transform-origin: center center;
+	transform: scale(0, 0);
+}
+:root .target:target + .modal {
+	transform: scale(1, 1);
 }

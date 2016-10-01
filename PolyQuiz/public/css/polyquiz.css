@@ -1,10 +1,11 @@
-/* blue #5d5dd5 */
+/* blue #d35e5e */
 /* black #4d4d4d */
 /* grey #f2f2f2 */
+/* red #d35e5e */
 
 body {
 	margin:0px;
-	font-family: verdana;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -17,7 +18,7 @@ footer {
 
 	padding:8px;
 
-	background: #5d5dd5;
+	background: #d35e5e;
 
 	width: calc(100% - 16px);
 
@@ -27,13 +28,23 @@ footer {
 }
 
 .navimage {
-	background: #5d5dd5;
+	background: #d35e5e;
 }
 
 .navtitle {
 	color:white;
 }
 
+.navlink:hover {
+	background: #d35e5e;
+}
+
+
+/* ANIMATIONS */
+@keyframes gray2blue {
+	from {background:#4d4d4d;}
+	to {background:#d35e5e;}
+}
 
 
 @media (min-width: 1024px) {
@@ -54,10 +65,11 @@ footer {
 
 	/* NAVIGATION */
 	.navtitle {
+		font-size: 22pt;
 		text-align: center;
 		padding:4px;
 
-		background: #5d5dd5
+		background: #d35e5e
 	}
 	.navimage {
 		padding:8px;
@@ -92,9 +104,6 @@ footer {
 		float:left;
 		margin-left:8px;
 		margin-top:8px;
-	}
-	.navlink:hover {
-		background: #5d5dd5;
 	}
 
 	#main-wrapper {
@@ -133,7 +142,7 @@ footer {
 		max-height: 26px;
 	}
 	#logout:hover {
-		background: #5d5dd5;
+		background: #d35e5e;
 	}
 }
 
@@ -186,7 +195,7 @@ footer {
 		display:none;
 	}
 	.navlink:hover {
-		background: #5d5dd5;
+		background: #d35e5e;
 	}
 
 	#main-wrapper {
@@ -236,6 +245,6 @@ footer {
 		max-height: 26px;
 	}
 	#logout:hover {
-		background: #5d5dd5;
+		background: #d35e5e;
 	}
 }

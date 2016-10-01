@@ -1,4 +1,4 @@
-/* blue #5d5dd5 */
+/* blue #d35e5e */
 /* black #4d4d4d */
 /* grey #f2f2f2 */
 
@@ -40,7 +40,7 @@
 	background: #4d4d4d;
 }
 .quiz-navig-btn:hover {
-	background: #5d5dd5
+	background: #d35e5e
 }
 .quiz-navig-btn div {
 	text-align: center;
@@ -68,7 +68,7 @@
 
 /* QUESTION */
 #question {
-	max-width: 60%;
+	width:calc(100% - 432px);
 	float:left;
 	margin-left:8px;
 }
@@ -83,7 +83,7 @@
 /* STATS */
 #statistics {
 	float:right;
-	max-width: 25%;
+	width:200px;
 
 	border-radius: 12px 0px 0px 12px;
 	background: #f2f2f2;
@@ -94,6 +94,7 @@
 #statistics table {
 	width:100%;
 	border-collapse: collapse;
+	margin-bottom: 32px;
 }
 
 
@@ -102,7 +103,7 @@
 /* RESULTS */
 #results {
 	float:left;
-	max-width: 25%;
+	width:200px;
 
 	border-radius: 0px 12px 12px 0px;
 	background: #f2f2f2;
@@ -113,6 +114,7 @@
 #results table {
 	width:100%;
 	border-collapse: collapse;
+	margin-bottom: 32px;
 }
 
 
