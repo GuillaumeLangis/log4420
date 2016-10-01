@@ -5,7 +5,7 @@
 #main-wrapper {
 	margin-left:0px;
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
 	#main-wrapper {
 		margin-left:200px;
 	}

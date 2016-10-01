@@ -28,7 +28,7 @@ router.get('/test2', function(req, res, next) {
 	res.render('test2', {title: 'Question #2 sur 2'});
 });
 router.get('/results', function(req, res, next) {
-	res.render('results', {title: 'Resultats'});
+	res.render('results', {title: 'Résultats'});
 });
 
 
