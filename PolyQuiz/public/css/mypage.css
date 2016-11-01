@@ -32,12 +32,21 @@
 	margin-bottom:8px;
 }
 
-.mypage-label {
+.mypage-label, .mypage-sublabel {
 	float:left;
-	margin-top:16px;
-	margin-left:8px;
+}
 
-	font-weight: bold;
+.mypage-label {
+	margin-left:8px;
+	margin-top:16px;
+	font-weight:bold;
+}
+
+.mypage-sublabel {
+	margin-left:12px;
+	margin-top:18px;
+	color: black;
+	font-size: 13px;
 }
 
 .mypage-link {
@@ -65,8 +74,6 @@
 #exam-type {
 	margin-top:0px;
 	cursor:pointer;
-
-	width:33%;
 }
 #exam-type select {
 	cursor:pointer;
@@ -76,6 +83,12 @@
 }
 #exam-type option {
 	text-align:center;
+}
+
+#stats-button {
+    width: 90%;
+    margin: 10px;
+    cursor: pointer;
 }
 
 

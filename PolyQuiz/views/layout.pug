@@ -3,6 +3,8 @@ html
 	head
 		title= title
 		link(href='/css/polyquiz.css', rel='stylesheet')
+		script(type='text/javascript' src='js/jquery-3.1.1.min.js')
+		script(type='text/javascript' src='js/scripts.js')
 		block head
 
 	body
@@ -28,7 +30,7 @@ html
 				div(id='logout')
 					a(href='/')
 						img(src='/images/logout.png')
-
+		
 		block content
 
 		footer

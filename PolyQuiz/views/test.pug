@@ -2,6 +2,7 @@ extends layout
 
 block head
 	link(href='/css/question.css', rel='stylesheet')
+	script(type='text/javascript' src='/js/test.js')
 
 block content
 	article(id='main-wrapper')
@@ -10,92 +11,49 @@ block content
 		section#results
 			div#results-content
 				h1 Resultats
-				table
-					tr
-						td #1
-						td.results-icon 
-							img(src='/images/correct.png')
-					tr
-						td #2
-						td.results-icon 
-							img(src='/images/cross.png')
-					tr
-						td #3
-						td.results-icon 
-							img(src='/images/correct.png')
-					tr
-						td #4
-						td.results-icon 
-							img(src='/images/correct.png')
-					tr
-						td #5
-						td.results-icon 
-							img(src='/images/correct.png')
-					tr.total
-						td Total
-						td 4/5
+				p#questionProgress
 
 		section#question
-			h1 Question 1 sur 2
+			h1#questionTitle
 			label Domaine : 
-			span CSS
-			p
-				| Lorem ipsum dolor sit amet, elit dolor nulla elit ligula omnis ut, nibh orci tellus elit, pellentesque at pellentesque eu, consectetuer mauris velit?
-			form
-				input(name='answer', type='radio', required='')
-				| Oui
-				br
-				input(name='answer', type='radio')
-				| None
-				br
-				input(name='answer', type='radio')
-				| 24 km/h
-				br
-				// <input type="submit" value="Suivant"><br>
-		
-
+			span#domain domain
+			p#askedQuestion question
+				div#answer
+					div(draggable='true', index='0').possibleAnswer#answer1
+					br
+					div(draggable='true', index='1').possibleAnswer#answer2
+					br
+					div(draggable='true', index='2').possibleAnswer#answer3
+					br
+				p Zone réponse
+				div#answerbox
+			section#quiz-navig
+				div#prev.quiz-navig-btn
+					a
+						div Abandonner 
+				div#next.quiz-navig-btn
+					a
+						div Suivant
+				div#closer
 		section#statistics
-				div#statistics-content
-					h1 Statistiques
-					table
-						tr
-							td Test #1
-							td 75%
-						tr
-							td Test #2
-							td 75%
-						tr
-							td Test #3
-							td 75%
-						tr
-							td Test #4
-							td 75%
-						tr.total
-							td Moyenne
-							td 75%
-					table
-						tr
-							td Examen #1
-							td 75%
-						tr
-							td Examen #2
-							td 75%
-						tr
-							td Examen #3
-							td 75%
-						tr
-							td Examen #4
-							td 75%
-						tr.total
-							td Moyenne
-							td 75%
-
-		div#clear
-		section#quiz-navig
-			div#prev.quiz-navig-btn
-				a(href='/mypage') 
-					div Abandonner <
-			div#next.quiz-navig-btn
-				a(href='/test2') 
-					div > Suivant
-			div#closer
+			div#statistics-content
+				h1 Statistiques
+				h1 Tests passés
+				table
+					tr
+						td Total
+						td#stats-quicktests
+				h1 Examens passés
+				table
+					tr
+						td CSS
+						td#stats-exams-css
+					tr
+						td HTML
+						td#stats-exams-html
+					tr
+						td JS
+						td#stats-exams-js
+					tr.total
+						td Moyenne totale
+						td#stats-exams-average

@@ -64,6 +64,10 @@
 	clear:both;
 }
 
+.column.over {
+  border: dashed;
+  border-color: blue;
+}
 
 
 /* QUESTION */
@@ -126,4 +130,8 @@ tr.total {
 .results-icon img{
 	max-height: 32px;
 	max-width: 32px;
+}
+
+.results {
+	width: calc(100% - 232px) !important;
 }

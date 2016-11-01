@@ -2,129 +2,99 @@ extends layout
 
 block head
 	link(href='/css/mypage.css', rel='stylesheet')
+	script(type='text/javascript' src='js/mypage.js')
+		
 
 block content
 	article(id='main-wrapper')
 		div(id='description')
 			h1 Tableau de Bord
-			section#summary
-				section#details-btn.single-cell
-					div(class='mypage-label') John Smith
-					a(class='mypage-link', href='#about')
-						div Details
-				section#instructions.single-cell
-					div(class='mypage-label') Instructions
-					a(class='mypage-link', href='instructions')
-						div >
-				section#quicktest.single-cell
-					div(class='mypage-label') Tests Rapides
-					a(class='mypage-link', href='quicktest') 
-						div Nouveau Test
-				section#fulltest.single-cell
-					div(class='mypage-label') Examens
-					div.mypage-label#exam-type
-						select
-							option(name='HTML') HTML
-							option(name='CSS') CSS
-							option(name='Javascript') Javascript
-					a(class='mypage-link', href='/test')
-						div Commencer
-				section#Results.multi-cell
-					div.multi-cell-wrapper
-						div.multi-cell-header Examens Precedents
-						div.multi-cell-content
-							table
-								tbody
-									tr
-										td.results-label Test Rapide 1
-										td.results-value 60%
-									tr
-										td.results-label Test Rapide 2
-										td.results-value 30%
-									tr
-										td.results-label Test Rapide 3
-										td.results-value 30%
-									tr
-										td.results-label Test Rapide 4
-										td.results-value 30%
-									tr.total
-										td.results-label Examen
-										td.results-value 100%
-			section#statistics
-				div#statistics-content
-					h1 Statistiques
-					table
-						tr
-							td Test #1
-							td 75%
-						tr
-							td Test #2
-							td 75%
-						tr
-							td Test #3
-							td 75%
-						tr
-							td Test #4
-							td 75%
-						tr.total
-							td Moyenne
-							td 75%
-					table
-						tr
-							td Examen #1
-							td 75%
-						tr
-							td Examen #2
-							td 75%
-						tr
-							td Examen #3
-							td 75%
-						tr
-							td Examen #4
-							td 75%
-						tr.total
-							td Moyenne
-							td 75%
-
+			section#wrapper
+				section#summary
+					section#details-btn.single-cell
+						div(class='mypage-label') John Smith
+						a(class='mypage-link', href='#about')
+							div Details
+					section#instructions.single-cell
+						div(class='mypage-label') Instructions
+						a(class='mypage-link', href='instructions')
+							div Instructions
+					section#quicktest.single-cell
+						div(class='mypage-label') Tests Rapides
+						a(class='mypage-link', href='quicktest') 
+							div Nouveau Test
+					section#fulltest.single-cell
+						div(class='mypage-label') Examens
+						div(class='mypage-sublabel') Domaine:
+						div.mypage-label#exam-type
+							select#test-domain
+								option(name='HTML') html
+								option(name='CSS') css
+								option(name='JS') js
+						div(class='mypage-sublabel') Nombre de question(s):
+						div.mypage-label#exam-type
+							select#test-nbQuestions
+								option(name='1') 1
+								option(name='2') 2
+								option(name='3') 3
+								option(name='4') 4
+						a(class='mypage-link', href='/test')
+							div Commencer
+					section#Results.multi-cell
+						div.multi-cell-wrapper
+							div.multi-cell-header Examens Precedents
+							div.multi-cell-content
+								table#details-exams-table
+				section#statistics
+					div#statistics-content
+						h1 Statistiques
+						h1 Tests passés
+						table
+							tr
+								td Total
+								td#stats-quicktests
+						h1 Examens passés
+						table
+							tr
+								td CSS
+								td#stats-exams-css
+							tr
+								td HTML
+								td#stats-exams-html
+							tr
+								td JS
+								td#stats-exams-js
+							tr.total
+								td Moyenne totale
+								td#stats-exams-average
+					a(class='mypage-link')#stats-button
+						div Réinitialiser
 
 block modal
 	span#start.target
 	span#about.target
 	div.modal
 		div.content.vertical-align-middle
-			a.close-btn(href="#start")
+			a.close-btn(href='#start')
 				div#modal-bg
 			div#details-content
-				h1 Details
+				h1 Statistiques
+				h1 Tests passés
 				table
 					tr
-						td.label Test #1
-						td.value 75%
-					tr
-						td.label Test #2
-						td.value 75%
-					tr
-						td.label Test #3
-						td.value 75%
-					tr
-						td.label Test #4
-						td.value 75%
-					tr.total
-						td.label Moyenne
-						td.value 75%
+						td Total
+						td#modal-quicktests
+				h1 Examens passés
 				table
 					tr
-						td.label Examen #1
-						td.value 75%
+						td CSS
+						td#modal-exams-css
 					tr
-						td.label Examen #2
-						td.value 75%
+						td HTML
+						td#modal-exams-html
 					tr
-						td.label Examen #3
-						td.value 75%
-					tr
-						td.label Examen #4
-						td.value 75%
+						td JS
+						td#modal-exams-js
 					tr.total
-						td.label Moyenne
-						td.value 75%
+						td Moyenne totale
+						td#modal-exams-average
