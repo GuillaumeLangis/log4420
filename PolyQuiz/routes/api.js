@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var router = express.Router();
+var db = require('./db');
 
 var data = require('../data/questions');
 
@@ -35,5 +36,9 @@ router.get('/quicktest', function(req, res, next) {
 
 	res.json(data[index]);
 });
+
+router.get('/questions', function(req, res, next) {
+	
+})
 
 module.exports = router;

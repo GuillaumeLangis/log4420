@@ -1,0 +1,24 @@
+extends layout
+
+block head
+	link(href='/css/questions.css', rel='stylesheet')
+
+block content
+	article(id='main-wrapper')
+		h1 Ajouter une Question
+		form#question-form(action='/addquestion', method='post')
+			h3 Question
+			textarea(formid='question-form', name='question', rows=3, cols=64 required)
+			h3 Reponses
+			input(type='text', name='answer1', placeholder='Reponse #1' required)
+			br
+			input(type='text', name='answer2', placeholder='Reponse #2' required)
+			br
+			input(type='text', name='answer3', placeholder='Reponse #3' required)
+			br
+			br
+			h3.form-label Reponse Correcte
+			input(type='number', name='correctanswerindex', placeholder='#' required)
+			br
+			br
+			input(type='submit', name='Submit', value='Ajouter')

@@ -13,7 +13,7 @@ header {
 }
 
 footer {
-	position: absolute;
+	position: fixed;
 	bottom:0px;
 
 	padding:8px;
@@ -66,8 +66,10 @@ footer {
 		width: 200px;
 		height: 100%;
 
-		top:0px;
-		position:absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		position:fixed;
 
 		background: #4d4d4d;
 	}
@@ -123,6 +125,8 @@ footer {
 	#main-wrapper {
 		margin-top:32px;
 		margin-left:232px;
+
+		margin-bottom:200px;
 	}
 
 	/* FOOTER */
@@ -164,8 +168,8 @@ footer {
 		width:100%;
 		height:42px;
 
-		top:0px;
-		position:absolute;
+		top:0;
+		position:fixed;
 
 		background: #4d4d4d;
 	}
@@ -223,6 +227,7 @@ footer {
 		margin-top:56px;
 		margin-left:8px;
 		margin-right:8px;
+		margin-bottom:200px;
 	}
 
 

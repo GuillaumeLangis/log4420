@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var db = require('./db');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Acceuil' });
@@ -33,6 +35,24 @@ router.get('/test2', function(req, res, next) {
 router.get('/results', function(req, res, next) {
 	res.render('results', {title: 'Résultats'});
 });
+
+router.get('/questions', function(req, res, next) {
+	db.Question.find(function(err, questions, count) {
+		if (err) console.log(err);
+
+		res.render('questions', {
+			title:'Questions',
+			questions : questions,
+			count : count
+		});
+	});
+});
+
+router.get('/addquestion', function(req, res, next) {
+	res.render('addquestion', {title: 'Ajouter Question'});
+});
+
+router.post('/addquestion', db.create);
 
 
 module.exports = router;

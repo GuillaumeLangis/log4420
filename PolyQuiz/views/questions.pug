@@ -1,0 +1,18 @@
+extends layout
+
+block head
+	link(href='/css/questions.css', rel='stylesheet')
+
+block content
+	article(id='main-wrapper')
+		h1 Questions
+		ul.questions-list
+			each q in questions
+				li
+					span.question-name= q.question
+					ul.answers-list
+						each a in q.answers
+							li= a
+					div.question-answer
+						label.question-answer-label Reponse : 
+						label.question-answer-value= q.answers[q.correctanswerindex]

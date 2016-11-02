@@ -8,12 +8,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
+var db = require('./routes/db');
 
 var app = express();
-
-const MongoClient = require('mongodb').MongoClient;
-const mongoose = require('mongoose');
-var db;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,13 +29,15 @@ app.use('/users', users);
 app.use('/api', api);
 
 
-MongoClient.connect('mongodb://admin:password@ds017432.mlab.com:17432/log4420', (err, database) => {
+/* MongoClient.connect('mongodb://admin:password@ds017432.mlab.com:17432/log4420', (err, database) => {
   if (err) return console.log(err);
   db = database;
-  app.listen(3000, function() {
-    console.log('listening on 3000');
-  });
-})
+  
+})*/
+const port = 4000;
+app.listen(port, function() {
+  console.log('listening on ' + port);
+});
 
 
 

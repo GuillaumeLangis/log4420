@@ -52,7 +52,7 @@
 .mypage-link {
 	float:right;
 
-	width:33%;
+	/* width:33%;*/
 	min-width: 120px;
 
 	border-radius: 12px;

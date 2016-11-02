@@ -1,0 +1,87 @@
+textarea {
+	resize:none;
+}
+
+input[type='text'] {
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom:1px solid gray;
+
+	min-width: 66%;
+
+	margin-bottom:24px;
+}
+
+input[type='number'] {
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom:1px solid gray;
+
+	max-width: 36px;
+}
+
+.form-label {
+	margin-right:8px;
+	display:inline-block;
+}
+
+input[type='submit'] {
+    /* width: 33%; */
+    min-width: 120px;
+    border-radius: 12px;
+    background: #4d4d4d;
+    height: 52px;
+    color: white;
+    text-decoration: none;
+
+    cursor:pointer;
+}
+
+input[type='submit'] {
+    /* width: 33%; */
+    min-width: 120px;
+    border-radius: 12px;
+    background: #4d4d4d;
+    height: 52px;
+    color: white;
+    text-decoration: none;
+
+    cursor:pointer;
+
+    border:none;
+}
+
+input[type='submit']:hover {
+	background: #d35e5e;
+}
+
+
+
+
+
+ul.questions-list {
+	list-style-type: none;
+	padding-left:0px;
+}
+
+.question-name {
+	font-weight:bold;
+}
+
+ul.questions-list > li {
+	margin-top:36px;
+}
+
+
+.question-answer {
+}
+.question-answer-value {
+	display:inline-block;
+	background:black;
+	min-width: 300px;
+}
+.question-answer-value:hover {
+	background:none;
+}
