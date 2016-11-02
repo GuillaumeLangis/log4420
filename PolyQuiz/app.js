@@ -11,6 +11,10 @@ var api = require('./routes/api');
 
 var app = express();
 
+const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
+var db;
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -26,6 +30,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
+
+
+MongoClient.connect('mongodb://admin:password@ds017432.mlab.com:17432/log4420', (err, database) => {
+  if (err) return console.log(err);
+  db = database;
+  app.listen(3000, function() {
+    console.log('listening on 3000');
+  });
+})
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
