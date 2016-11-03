@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 
 var questionSchema = new Schema({
 	_id					: Number,
+	domain				: String,
 	question 			: String,
 	answers				: [String],
 	correctanswerindex	: Number

@@ -21,35 +21,8 @@ router.get('/test', function(req, res, next) {
 		});
 	} catch(err) {
 		console.log("Error", err);
-		res.json({})
+		res.json({});
 	}
-	
-	
-
-	/*
-	var index;
-
-	// index [0,3] = CSS
-	// index [4,7] = HTML
-	// index [8,11] = JS
-	switch(req.query.domain) {
-	    case 'css':
-	    	index = 0;
-	        break;
-	    case 'html':
-	    	index = 4;
-	        break;
-	    case 'js':
-	    	index = 8;
-	        break;
-    }
-
-    var response = [];
-    for(var i = 0; i < parseInt(req.query.nbQuestions); i++) {
-    	response.push(data[index + i]);
-    }
-
-    res.json(response);*/
 });
 
 router.get('/quicktest', function(req, res, next) {
@@ -67,15 +40,21 @@ router.get('/quicktest', function(req, res, next) {
 		console.log("Error", err);
 		res.json({})
 	}
-
-
-	// var index = Math.floor(Math.random() * 11);	
-
-	// res.json(data[index]);
 });
 
-router.get('/questions', function(req, res, next) {
-	
-})
+router.get('/nbquestions', function(req, res, next) {
+	var domain = req.query.domain;
+	// console.log(domain);
+	db.Question.find(function(req, questions) {
+		
+		if (domain != "") {
+			var questions = questions.filter(function(q) {return q.domain === domain;});
+		}
+
+		// console.log(questions.length);
+		res.json( { count:questions.length } );
+		
+	});
+});
 
 module.exports = router;

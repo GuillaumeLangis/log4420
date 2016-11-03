@@ -81,6 +81,12 @@
 	border-radius: 12px;
 	height:52px;
 }
+#test-nbQuestions {
+	border-radius: 12px;
+	border:1px solid gray;
+	height:46px;
+	max-width:32px;
+}
 #exam-type option {
 	text-align:center;
 }

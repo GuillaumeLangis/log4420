@@ -33,11 +33,7 @@ block content
 								option(name='JS') js
 						div(class='mypage-sublabel')
 						div.mypage-label#exam-type
-							select#test-nbQuestions
-								option(name='1') 1
-								option(name='2') 2
-								option(name='3') 3
-								option(name='4') 4
+							input#test-nbQuestions(min='1', max='99', value='1', type='number')
 						a(class='mypage-link', href='/test')
 							div Commencer
 					section#Results.multi-cell
