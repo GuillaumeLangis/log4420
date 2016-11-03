@@ -30,6 +30,7 @@ $(document).ready(function() {
 			displayNextQuestion();
 		},
 		error: function(error) {
+			console.log(error);
 			alert("AJAX request failed.");
 		}
 	});

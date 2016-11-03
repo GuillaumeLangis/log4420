@@ -6,6 +6,27 @@ var db = require('./db');
 var data = require('../data/questions');
 
 router.get('/test', function(req, res, next) {
+
+	var response = {};
+
+	var filter = { domain: { $in: [req.query.domain] } };
+
+	try {
+		db.Question.findRandom(filter, {}, {limit: parseInt(req.query.nbQuestions)}, function(err, results) {
+			if (!err) {
+				response = results;
+			}
+
+			res.json(response);
+		});
+	} catch(err) {
+		console.log("Error", err);
+		res.json({})
+	}
+	
+	
+
+	/*
 	var index;
 
 	// index [0,3] = CSS
@@ -28,13 +49,29 @@ router.get('/test', function(req, res, next) {
     	response.push(data[index + i]);
     }
 
-    res.json(response);
+    res.json(response);*/
 });
 
 router.get('/quicktest', function(req, res, next) {
-	var index = Math.floor(Math.random() * 11);	
 
-	res.json(data[index]);
+	var response = {};
+	try {
+		db.Question.findRandom({}, {}, {limit: 1}, function(err, results) {
+			if (!err) {
+				response = results[0];
+			}
+
+			res.json(response);
+		});
+	} catch(err) {
+		console.log("Error", err);
+		res.json({})
+	}
+
+
+	// var index = Math.floor(Math.random() * 11);	
+
+	// res.json(data[index]);
 });
 
 router.get('/questions', function(req, res, next) {

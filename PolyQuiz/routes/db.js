@@ -1,8 +1,11 @@
 var mongoose = require( 'mongoose' );
 var autoincrement = require('mongoose-auto-increment');
+var random = require('mongoose-simple-random');
+
 var Schema = mongoose.Schema;
 
 var questionSchema = new Schema({
+	_id					: Number,
 	question 			: String,
 	answers				: [String],
 	correctanswerindex	: Number
@@ -18,13 +21,13 @@ db.once('open', function() {
 });
 
 
-
 const connection = mongoose.connect( 'mongodb://admin:password@ds017432.mlab.com:17432/log4420' );
 exports.connect = connection;
 
 autoincrement.initialize(connection);
 
 questionSchema.plugin(autoincrement.plugin, 'Questions');
+questionSchema.plugin(random);
 
 const Question = mongoose.model( 'Question', questionSchema );
 exports.Question = Question;
