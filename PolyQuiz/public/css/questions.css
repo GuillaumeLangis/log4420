@@ -57,6 +57,21 @@ input[type='submit']:hover {
 	background: #d35e5e;
 }
 
+a.delete-question {
+	float:right;
+	color:white;
+	text-decoration: none;
+	border-radius:8px;
+	background: #4d4d4d;
+	margin-top:8px;
+	padding:8px;
+}
+
+a.delete-question:hover {
+	background: #d35e5e;
+}
+
+
 
 
 
@@ -71,7 +86,7 @@ ul.questions-list {
 }
 
 ul.questions-list > li {
-	margin-top:36px;
+	margin-top:32px;
 }
 
 

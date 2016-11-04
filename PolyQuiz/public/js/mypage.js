@@ -4,8 +4,8 @@ $(document).ready(function()  {
 	
 	updateMaxNbQuestions();
 
-	displayStatistics(1);
-	displayDetails();
+	// displayStatistics(1);
+	// displayDetails();
 
 	$('#test-domain').on('change', function() {
 		if($(this).val() == 'CSS' || 'JS' || 'HTML') {
@@ -37,9 +37,9 @@ $(document).ready(function()  {
 	});
 
 	$('#stats-button').on('click', function() {
-		initResults();
-		displayStatistics(1);
-		displayDetails();
+		// initResults();
+		// displayStatistics(1);
+		// displayDetails();
 	});
 });
 

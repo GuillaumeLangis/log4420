@@ -9,10 +9,14 @@ block content
 		ul.questions-list
 			each q in questions
 				li
+					a.delete-question(href="/deletequestion?_id=" + q._id) Supprimer
 					span.question-name= q.question
+					div.question-domain
+						label.question-domain-label Domaine : 
+						label.question-domain-value= q.domain
 					ul.answers-list
 						each a in q.answers
 							li= a
 					div.question-answer
 						label.question-answer-label Reponse : 
-						label.question-answer-value= q.answers[q.correctanswerindex]
+						label.question-answer-value= q.answers[q.correctanswerindex]					

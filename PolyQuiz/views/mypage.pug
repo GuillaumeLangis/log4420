@@ -40,29 +40,45 @@ block content
 						div.multi-cell-wrapper
 							div.multi-cell-header Examens Precedents
 							div.multi-cell-content
-								table#details-exams-table
+							table#details-exams-table
+								each ex in statistics.exams
+									tr
+										td= ex.domain
+										td
+											label= ex.questionsSuccess
+											label /
+											label= ex.questionsTotal
+								tr.total
+									td Moyenne totale
+									td#stats-exams-average
+										label= average
+										label %
 				section#statistics
 					div#statistics-content
 						h1 Statistiques
 						h1 Tests passés
 						table
-							tr
-								td Total
-								td#stats-quicktests
+							each qt in statistics.quicktests
+								tr
+									td Total
+									td#stats-quicktests
+										label= qt.questionsSuccess
+										label /
+										label= qt.questionsTotal
 						h1 Examens passés
 						table
-							tr
-								td CSS
-								td#stats-exams-css
-							tr
-								td HTML
-								td#stats-exams-html
-							tr
-								td JS
-								td#stats-exams-js
+							each ex in statistics.exams
+								tr
+									td= ex.domain
+									td
+										label= ex.questionsSuccess
+										label /
+										label= ex.questionsTotal
 							tr.total
 								td Moyenne totale
 								td#stats-exams-average
+									label= average
+									label %
 					a(class='mypage-link')#stats-button
 						div Réinitialiser
 
@@ -76,21 +92,25 @@ block modal
 			div#details-content
 				h1 Statistiques
 				h1 Tests passés
-				table
-					tr
-						td Total
-						td#modal-quicktests
-				h1 Examens passés
-				table
-					tr
-						td CSS
-						td#modal-exams-css
-					tr
-						td HTML
-						td#modal-exams-html
-					tr
-						td JS
-						td#modal-exams-js
-					tr.total
-						td Moyenne totale
-						td#modal-exams-average
+					table
+						each qt in statistics.quicktests
+							tr
+								td Total
+								td#stats-quicktests
+									label= qt.questionsSuccess
+									label /
+									label= qt.questionsTotal
+					h1 Examens passés
+					table
+						each ex in statistics.exams
+							tr
+								td= ex.domain
+								td
+									label= ex.questionsSuccess
+									label /
+									label= ex.questionsTotal
+						tr.total
+							td Moyenne totale
+							td#stats-exams-average
+								label= average
+								label %

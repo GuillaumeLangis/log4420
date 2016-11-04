@@ -92,6 +92,7 @@ function saveResults(correct, total, domaine) {
 
 function initResults() {
 	// TODO remove all exams individual results!
+	/*
 	var count = window.localStorage['stats.exams.count'];
 	for(var i = 0; i < count; i++) {
 		window.localStorage.removeItem('stats.exams.' + i + '.correct');
@@ -112,6 +113,7 @@ function initResults() {
 
 	window.localStorage['stats.quicktests.correct'] = 0;
 	window.localStorage['stats.quicktests.total'] = 0;
+	*/
 }
 
 // drag and drop

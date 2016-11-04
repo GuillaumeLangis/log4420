@@ -9,6 +9,13 @@ block content
 		form#question-form(action='/addquestion', method='post')
 			h3 Question
 			textarea(formid='question-form', name='question', rows=3, cols=64 required)
+			br
+			h3.form-label Domaine
+			select(name='domain', form='question-form')
+				option(value='html') html
+				option(value='css') css
+				option(value='js') js
+			br
 			h3 Reponses
 			input(type='text', name='answer1', placeholder='Reponse #1' required)
 			br
@@ -18,7 +25,7 @@ block content
 			br
 			br
 			h3.form-label Reponse Correcte
-			input(type='number', name='correctanswerindex', placeholder='#' required)
+			input(type='number', name='correctanswerindex', placeholder='#' required, min=1, max=3, value=1)
 			br
 			br
 			input(type='submit', name='Submit', value='Ajouter')
