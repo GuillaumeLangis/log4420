@@ -74,7 +74,7 @@ router.post('/start', function(req, res, next) {
 					if (err) console.log(err);
 					else {
 						console.log("Stats " + stats._id + " updated with new exam");
-						console.log(new_exam);
+						console.log(qt);
 					}
 
 					res.json(stats);
@@ -87,7 +87,38 @@ router.post('/start', function(req, res, next) {
 		// TODO
 		// 	- Setup new quicktest
 		//	- Add one random question to queue
+		if (type == 'quicktest') {
+			if (stats.quicktests.length == 0) {
+				// Create at least one quicktest
+				var qt = {
+					questions 			: [],
+					answers 			: [],
+					questionsTotal		: 0,
+					questionsSuccess 	: 0
+				}
 
+				stats.currentQuicktest = 0;
+				stats.quicktests.push(qt);
+			} else {
+				stats.currentQuicktest = stats.quicktests.length-1;
+			}
+
+			// Add a question
+			db.Question.findRandom(filter, {}, {limit: 1}, function(err, results) { 
+				stats.quicktests[stats.currentQuicktest].questions.push(results[0]);
+				stats.quicktests[stats.currentQuicktest].questionsTotal = stats.quicktests[stats.currentQuicktest].questions.length;
+
+				stats.save(function(err, st) {
+					if (err) console.log(err);
+					else {
+						console.log("Stats " + stats._id + " updated with new quicktest");
+						console.log(qt);
+					}
+
+					res.json(stats);
+				});
+			});
+		}
 		
 	});
 });
@@ -134,9 +165,41 @@ router.post('/submitAnswer', function(req, res, next) {
 		// TODO
 		//	- validate just like exam
 		//	- add another question to the queue (change question set)
+		try {
+			if (type == 'quicktest') {
+				var qt = stats.quicktests[stats.currentQuicktest];
+
+				qt.answers.push(parseInt(answer));				// Push the answer nb being submitted
+
+				var question = qt.questions[questionNb];		// What's the question being answered?
+				if (answer == question.correctanswerindex) {
+					console.log("CORRECT");
+					qt.questionsSuccess += 1;
+				}
 
 
-		res.json(stats);
+				// Add a question
+				db.Question.findRandom({}, {}, {limit: 1}, function(err, results) { 
+					stats.quicktests[stats.currentQuicktest].questions.push(results[0]);
+					stats.quicktests[stats.currentQuicktest].questionsTotal = stats.quicktests[stats.currentQuicktest].questions.length;
+
+					stats.save(function(err, st) {
+						if (err) console.log(err);
+						else {
+							console.log("Stats " + stats._id + " updated with new quicktest");
+							console.log(qt);
+						}
+
+						res.json(stats);
+					});
+				});
+			}
+		} catch (err) {
+			console.log(err);
+		}
+		
+
+		// res.json(stats);
 	});
 });
 

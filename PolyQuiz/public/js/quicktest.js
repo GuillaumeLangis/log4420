@@ -24,9 +24,7 @@ $(document).ready(function() {
 		url: "/api/start",
 		type: "post", 
 		data: {
-			evaltype: 'exam',
-			domain: domaine, 
-			total: nbQuestion
+			evaltype: 'quicktest'
 		},
 		success: function(response) {
 			qt = response.quicktests[response.currentQuicktest];
@@ -60,21 +58,31 @@ $(document).ready(function() {
 	 	var questionTitleNumber = questionNumber + 1;
 	 	$('#questionTitle').text('Question ' + questionTitleNumber);
 
-	    $.ajax({
-			url: "api/randomquestion",
-			type: "get", 
-			success: function(response) {
-				$('#domain').text(response.domain);
-				$('#askedQuestion').text(response.question);
-				$('#answer1').text(response.answers[0]);
-				$('#answer2').text(response.answers[1]);
-				$('#answer3').text(response.answers[2]);
-				setCorrectAnswer(response.correctanswerindex);
-			},
-			error: function(error) {
-				alert("AJAX request failed.");
-			}
-		});
+
+	 	// Update form
+	 	var question = questions[questionNumber];
+	 	$('#domain').text(question.domain);
+		$('#askedQuestion').text(question.question);
+		$('#answer1').text(question.answers[0]);
+		$('#answer2').text(question.answers[1]);
+		$('#answer3').text(question.answers[2]);
+		setCorrectAnswer(question.correctanswerindex);
+
+	 //    $.ajax({
+		// 	url: "api/randomquestion",
+		// 	type: "get", 
+		// 	success: function(response) {
+		// 		$('#domain').text(response.domain);
+		// 		$('#askedQuestion').text(response.question);
+		// 		$('#answer1').text(response.answers[0]);
+		// 		$('#answer2').text(response.answers[1]);
+		// 		$('#answer3').text(response.answers[2]);
+		// 		setCorrectAnswer(response.correctanswerindex);
+		// 	},
+		// 	error: function(error) {
+		// 		alert("AJAX request failed.");
+		// 	}
+		// });
 	}
 
 	// Saves a result either as 0 (wrong answer) or 1 (right answer)
@@ -123,6 +131,8 @@ $(document).ready(function() {
 		var id = e.dataTransfer.getData('index');			// The id of the dragged text
 
 		// API call to answer the question
+		// This validates the answer
+		//		adds another question to the question queue
 		var node = $(this);
 		$.ajax({
 			url:'/api/submitAnswer',
