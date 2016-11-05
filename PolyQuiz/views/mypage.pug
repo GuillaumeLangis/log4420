@@ -41,13 +41,14 @@ block content
 							div.multi-cell-header Examens Precedents
 							div.multi-cell-content
 							table#details-exams-table
-								each ex in statistics.exams
-									tr
-										td= ex.domain
-										td
-											label= ex.questionsSuccess
-											label /
-											label= ex.questionsTotal
+								if statistics.exams
+									each ex in statistics.exams
+										tr
+											td= ex.domain
+											td
+												label= ex.questionsSuccess
+												label /
+												label= ex.questionsTotal
 								tr.total
 									td Moyenne totale
 									td#stats-exams-average
@@ -58,22 +59,24 @@ block content
 						h1 Statistiques
 						h1 Tests passés
 						table
-							each qt in statistics.quicktests
-								tr
-									td Total
-									td#stats-quicktests
-										label= qt.questionsSuccess
-										label /
-										label= qt.questionsTotal
+							if statistics.quicktests
+								each qt in statistics.quicktests
+									tr
+										td Total
+										td#stats-quicktests
+											label= qt.questionsSuccess
+											label /
+											label= qt.questionsTotal
 						h1 Examens passés
 						table
-							each ex in statistics.exams
-								tr
-									td= ex.domain
-									td
-										label= ex.questionsSuccess
-										label /
-										label= ex.questionsTotal
+							if statistics.exams
+								each ex in statistics.exams
+									tr
+										td= ex.domain
+										td
+											label= ex.questionsSuccess
+											label /
+											label= ex.questionsTotal
 							tr.total
 								td Moyenne totale
 								td#stats-exams-average
@@ -93,22 +96,24 @@ block modal
 				h1 Statistiques
 				h1 Tests passés
 					table
-						each qt in statistics.quicktests
-							tr
-								td Total
-								td#stats-quicktests
-									label= qt.questionsSuccess
-									label /
-									label= qt.questionsTotal
+						if statistics.quicktests
+							each qt in statistics.quicktests
+								tr
+									td Total
+									td#stats-quicktests
+										label= qt.questionsSuccess
+										label /
+										label= qt.questionsTotal
 					h1 Examens passés
 					table
-						each ex in statistics.exams
-							tr
-								td= ex.domain
-								td
-									label= ex.questionsSuccess
-									label /
-									label= ex.questionsTotal
+						if statistics.exams
+							each ex in statistics.exams
+								tr
+									td= ex.domain
+									td
+										label= ex.questionsSuccess
+										label /
+										label= ex.questionsTotal
 						tr.total
 							td Moyenne totale
 							td#stats-exams-average

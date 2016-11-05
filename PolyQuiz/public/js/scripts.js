@@ -5,33 +5,41 @@ function displayStatistics(modal) {
 			initResults();
 		}
 
-		var testCorrect = window.localStorage['stats.quicktests.correct'];
-		var testTotal = window.localStorage['stats.quicktests.total'];
+		$.get('/api/stats', function(resp) {
+			// console.log(resp);
+			// var testCorrect = resp.quicktests[resp.currentQuicktest].questionsSuccess;
+			// var testTotal = resp.quicktests[resp.currentQuicktest].questionsTotal;
 
-		var examCount = window.localStorage['stats.exams.count'];
-		var examAverage = window.localStorage['stats.exams.average'];
+			// $('#stats-quicktests').text(testCorrect + '/' + testTotal);
+		});
 
-		var examCssTotal = window.localStorage['stats.exams.domain.css.total'];
-		var examCssPassed = window.localStorage['stats.exams.domain.css.passed'];
+		// var testCorrect = window.localStorage['stats.quicktests.correct'];
+		// var testTotal = window.localStorage['stats.quicktests.total'];
 
-		var examJsTotal = window.localStorage['stats.exams.domain.js.total'];
-		var examJsPassed = window.localStorage['stats.exams.domain.js.passed'];
+		// var examCount = window.localStorage['stats.exams.count'];
+		// var examAverage = window.localStorage['stats.exams.average'];
 
-		var examHtmlTotal = window.localStorage['stats.exams.domain.html.total'];
-		var examHtmlPassed = window.localStorage['stats.exams.domain.html.passed'];
+		// var examCssTotal = window.localStorage['stats.exams.domain.css.total'];
+		// var examCssPassed = window.localStorage['stats.exams.domain.css.passed'];
 
-		$('#stats-quicktests').text(testCorrect + '/' + testTotal);
-		$('#stats-exams-average').text(parseFloat(examAverage).toFixed(2) * 100 + '%');
-		$('#stats-exams-css').text(examCssPassed + '/' + examCssTotal);
-		$('#stats-exams-js').text(examJsPassed + '/' + examJsTotal);
-		$('#stats-exams-html').text(examHtmlPassed + '/' + examHtmlTotal);
+		// var examJsTotal = window.localStorage['stats.exams.domain.js.total'];
+		// var examJsPassed = window.localStorage['stats.exams.domain.js.passed'];
+
+		// var examHtmlTotal = window.localStorage['stats.exams.domain.html.total'];
+		// var examHtmlPassed = window.localStorage['stats.exams.domain.html.passed'];
+
+		// $('#stats-quicktests').text(testCorrect + '/' + testTotal);
+		// $('#stats-exams-average').text(parseFloat(examAverage).toFixed(2) * 100 + '%');
+		// $('#stats-exams-css').text(examCssPassed + '/' + examCssTotal);
+		// $('#stats-exams-js').text(examJsPassed + '/' + examJsTotal);
+		// $('#stats-exams-html').text(examHtmlPassed + '/' + examHtmlTotal);
 
 		if (modal) {
-			$('#modal-quicktests').text(testCorrect + '/' + testTotal);
-			$('#modal-exams-average').text(parseFloat(examAverage).toFixed(2) * 100 + '%');
-			$('#modal-exams-css').text(examCssPassed + '/' + examCssTotal);
-			$('#modal-exams-js').text(examJsPassed + '/' + examJsTotal);
-			$('#modal-exams-html').text(examHtmlPassed + '/' + examHtmlTotal);
+			// $('#modal-quicktests').text(testCorrect + '/' + testTotal);
+			// $('#modal-exams-average').text(parseFloat(examAverage).toFixed(2) * 100 + '%');
+			// $('#modal-exams-css').text(examCssPassed + '/' + examCssTotal);
+			// $('#modal-exams-js').text(examJsPassed + '/' + examJsTotal);
+			// $('#modal-exams-html').text(examHtmlPassed + '/' + examHtmlTotal);
 		}
 	});
 }

@@ -20,9 +20,8 @@ router.get('/mypage', function(req, res, next) {
 		stats.exams.forEach(function(ex) {
 			average += ex.questionsSuccess/ex.questionsTotal;
 		});
-		average /= stats.exams.length;
+		average /= Math.max(1, stats.exams.length);
 		average *= 100;
-		console.log(stats, average);
 
 		res.render('mypage', 
 			{
@@ -34,23 +33,66 @@ router.get('/mypage', function(req, res, next) {
 });
 
 router.get('/quicktest', function(req, res, next) {
-	res.render('quicktest', {title: 'Question Rapide #1'});
-});
+	db.Statistics.findOne({"_id":0}, function(err, stats) {
+		if (err) console.log(err);
 
-router.get('/quicktest2', function(req, res, next) {
-	res.render('quicktest2', {title: 'Question Rapide #2'});
+		var average = 0;
+		stats.exams.forEach(function(ex) {
+			average += ex.questionsSuccess/ex.questionsTotal;
+		});
+		average /= stats.exams.length;
+		average *= 100;
+		console.log(stats, average);
+
+		res.render('quicktest', 
+			{
+				title: 'Question Rapide',
+				statistics: stats,
+				average: average
+			});
+	});
 });
 
 router.get('/test', function(req, res, next) {
-	res.render('test', {title: 'Question #1 sur 2'});
-});
+	db.Statistics.findOne({"_id":0}, function(err, stats) {
+		if (err) console.log(err);
 
-router.get('/test2', function(req, res, next) {
-	res.render('test2', {title: 'Question #2 sur 2'});
+		var average = 0;
+		stats.exams.forEach(function(ex) {
+			average += ex.questionsSuccess/ex.questionsTotal;
+		});
+		average /= stats.exams.length;
+		average *= 100;
+		console.log(stats, average);
+
+		res.render('test', 
+			{
+				title: 'Examen',
+				statistics: stats,
+				average: average
+			});
+	});
 });
 
 router.get('/results', function(req, res, next) {
-	res.render('results', {title: 'Résultats'});
+	// res.render('results', {title: 'Résultats'});
+	db.Statistics.findOne({"_id":0}, function(err, stats) {
+		if (err) console.log(err);
+
+		var average = 0;
+		stats.exams.forEach(function(ex) {
+			average += ex.questionsSuccess/ex.questionsTotal;
+		});
+		average /= Math.max(1, stats.exams.length);
+		average *= 100;
+
+		res.render('results', 
+			{
+				title: 'Resultats',
+				statistics: stats,
+				average: average
+			});
+	});
 });
 
 router.get('/questions', function(req, res, next) {

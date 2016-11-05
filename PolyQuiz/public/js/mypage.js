@@ -37,9 +37,13 @@ $(document).ready(function()  {
 	});
 
 	$('#stats-button').on('click', function() {
-		// initResults();
-		// displayStatistics(1);
-		// displayDetails();
+		$.ajax({
+			url:'/api/clearStats',
+			type:'post',
+			success:function(response) {
+				window.location = '/mypage';
+			}
+		});
 	});
 });
 

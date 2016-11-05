@@ -5,43 +5,172 @@ var db = require('./db');
 
 var data = require('../data/questions');
 
-router.get('/test', function(req, res, next) {
+// Get statistics
+router.get('/stats', function(req, res, next) {
+	db.Statistics.findOne({"_id":0}, function(err, stats) {
+		if (err) console.log(err);
+		res.json(stats);
+	});
+});
+// Completely clears all user statistics
+router.post('/clearStats', function(req, res, next) {
+	db.Statistics.findOne({"_id":0}, function(err, stats) {
+		if (err) console.log(err);
 
-	var response = {};
+		stats.currentQuicktest = -1;
+		stats.currentExam = -1;
+		stats.quicktests = [];
+		stats.exams = [];
 
-	var filter = { domain: { $in: [req.query.domain] } };
-
-	try {
-		db.Question.findRandom(filter, {}, {limit: parseInt(req.query.nbQuestions)}, function(err, results) {
-			if (!err) {
-				response = results;
+		stats.save(function(err, st) {
+			if (err) console.log(err);
+			else {
+				console.log("Stats " + stats._id + " reset");
 			}
-
-			res.json(response);
 		});
-	} catch(err) {
-		console.log("Error", err);
-		res.json({});
-	}
+
+		res.json(stats);
+	});
 });
 
-router.get('/quicktest', function(req, res, next) {
+// Start a quick test or an exam
+router.post('/start', function(req, res, next) {
+	var type = req.body.evaltype;
 
-	var response = {};
-	try {
-		db.Question.findRandom({}, {}, {limit: 1}, function(err, results) {
-			if (!err) {
-				response = results[0];
-			}
+	console.log("Starting new", type);
+	db.Statistics.findOne({"_id":0}, function(err, stats) {
+		if (err) console.log(err);
 
-			res.json(response);
-		});
-	} catch(err) {
-		console.log("Error", err);
-		res.json({})
-	}
+		// EXAM
+		if (type == 'exam') {
+			var domain = req.body.domain;
+			var total = req.body.total;
+			var questions = [];
+
+			console.log("Exam", domain, total);
+
+			// PICK QUESTIONS
+			var filter = { domain: { $in: [domain] } };
+			db.Question.findRandom(filter, {}, {limit: parseInt(total)}, function(err, results) { 
+				questions = results; 
+
+				// CREATE EXAM
+				// This exam contains 
+				// 	- questions selected randomly by domain
+				//	- an empty list of answers
+				//	- total stats on this exam
+				// 	- the selected domain
+				var new_exam = {
+					domain 				: domain,
+					questions 			: questions,
+					answers 			: [],
+					questionsTotal		: questions.length,
+					questionsSuccess 	: 0
+				}
+				stats.currentExam = stats.exams.length;
+				stats.exams.push(new_exam);
+
+				stats.save(function(err, st) {
+					if (err) console.log(err);
+					else {
+						console.log("Stats " + stats._id + " updated with new exam");
+						console.log(new_exam);
+					}
+
+					res.json(stats);
+				});
+			});		
+		}
+
+
+		// QUICKTEST
+		// TODO
+		// 	- Setup new quicktest
+		//	- Add one random question to queue
+
+		
+	});
 });
 
+// Submit an answer to the current quicktest/exam
+router.post('/submitAnswer', function(req, res, next) {
+	var type = req.body.evaltype;
+	var questionNb = req.body.questionNb;
+	var answer = req.body.answer;
+
+	console.log("Submitting answer to ", type);
+
+	db.Statistics.findOne({"_id":0}, function(err, stats) {
+		if (err) console.log(err);
+
+		// EXAM
+		if (type == 'exam') {
+			if (stats.currentExam != -1) {
+				var exam = stats.exams[stats.currentExam];
+
+				exam.answers.push(parseInt(answer));		// Push the answer nb being submitted
+
+				var question = exam.questions[questionNb];	// What's the question being answered?
+				if (answer == question.correctanswerindex) {
+					console.log("CORRECT");
+					exam.questionsSuccess += 1;
+				}
+
+				// Save stats
+				stats.save(function(err, st) {
+					if (err) console.log(err);
+					else {
+						console.log("Stats " + stats._id + " saved");
+					}
+				});
+
+			} else {
+				console.log("ERROR ======= There is no current exam being evaluated")
+			}
+		}
+
+
+		// QUICKTEST
+		// TODO
+		//	- validate just like exam
+		//	- add another question to the queue (change question set)
+
+
+		res.json(stats);
+	});
+});
+
+// Finish a quicktest/exam
+router.post('/finish', function(req, res, next) {
+	db.Statistics.findOne({"_id":0}, function(err, stats) {
+		if (err) console.log(err);
+
+		stats.currentQuicktest = -1;
+		stats.currentExam = -1;
+
+		stats.save(function(err, st) {
+			if (err) console.log(err);
+			else {
+				console.log("Stats " + stats._id + " saved - evaluation finished.");
+			}
+		});
+
+		res.json(stats);
+	});
+});
+
+// Get a random question
+router.get('/randomquestion', function(req, res, next) {
+	db.Question.findRandom({}, {}, {limit: 1}, function(err, results) {
+		if (!err) {
+			response = results[0];
+		}
+
+		res.json(response);
+	});
+});
+
+// Quick get of the number of questions of a certain domain
 router.get('/nbquestions', function(req, res, next) {
 	var domain = req.query.domain;
 	// console.log(domain);

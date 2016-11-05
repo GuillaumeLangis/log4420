@@ -17,17 +17,36 @@ var statisticsSchema = new Schema({
 	_id					: Number,
 	quicktests			: [
 		{
+			domain				: String,
 			questionsTotal		: Number,
-			questionsSuccess	: Number
+			questionsSuccess	: Number,
+			questions 			: [{
+				_id					: String,
+				domain				: String,
+				question 			: String,
+				answers				: [String],
+				correctanswerindex	: Number
+			}],
+			answers				: [Number]
 		}
 	],
 	exams				: [
 		{
 			domain				: String,
 			questionsTotal		: Number,
-			questionsSuccess	: Number
+			questionsSuccess	: Number,
+			questions 			: [{
+				_id					: String,
+				domain				: String,
+				question 			: String,
+				answers				: [String],
+				correctanswerindex	: Number
+			}],
+			answers				: [Number]
 		}
-	]
+	],
+	currentQuicktest 	: Number,
+	currentExam			: Number
 }, {
 	collection : 'Statistics'
 });
@@ -97,11 +116,4 @@ exports.delete = function (req, res) {
 			res.redirect( '/questions' );
 		});
 	});
-}
-
-exports.addQuickTest = function (req, res) {
-	console.log(req.questionsTotal, req.questionsSuccess);
-}
-exports.addExam = function (req, res) {
-	console.log(req.domain, req.questionsTotal, req.questionsSuccess);
 }

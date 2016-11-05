@@ -21,12 +21,28 @@ $(document).ready(function() {
 	var answered = false;
 	var currentAnswer;
 	var questions;
+
+	var exam;
+
+
+	// To start the exam, we call the api "start"
+	// We then get the questions generated
+
+
 	$.ajax({
-		url: "api/test",
-		type: "get", 
-		data:{domain: domaine, nbQuestions: nbQuestion},
+		url: "/api/start",
+		type: "post", 
+		data: {
+			evaltype: 'exam',
+			domain: domaine, 
+			total: nbQuestion
+		},
 		success: function(response) {
-			questions = response;
+			exam = response.exams[response.currentExam];
+			questions = exam.questions;
+
+			// console.log(exam, questions);
+
 			displayNextQuestion();
 		},
 		error: function(error) {
@@ -56,7 +72,7 @@ $(document).ready(function() {
 	$('#next.quiz-navig-btn').on('click', function() {
 		if(answered) {
 			if(++questionNumber == nbQuestion) {
-				window.sessionStorage['current.correctAnswers'] = correctQuestion;
+				// window.sessionStorage['current.correctAnswers'] = correctQuestion;
 				window.location = "/results";
 			} else {
 				displayNextQuestion();
@@ -83,12 +99,43 @@ $(document).ready(function() {
 		});
 
 		$(this).text(e.dataTransfer.getData('text'));
-		if(e.dataTransfer.getData('index') == correctAnswer) {
-			$(this).css('border-color', 'green');
-			correctQuestion++;
-		} else {
-			$(this).css('border-color', 'red');
-		}
+		var id = e.dataTransfer.getData('index');			// The id of the dragged text
+
+		// API call to answer the question
+		var node = $(this);
+		$.ajax({
+			url:'/api/submitAnswer',
+			type:'post',
+			data: {
+				evaltype:'exam',
+				questionNb: questionNumber,
+				answer: id
+			},
+			success: function(response) {
+				// Refresh model
+				exam = response.exams[response.currentExam];
+				questions = exam.questions;
+
+				// Check if we answered correctly
+				if (exam.answers[questionNumber] == questions[questionNumber].correctanswerindex) {
+					node.css('border-color', 'green');
+				} else {
+					node.css('border-color', 'red');
+				}
+
+				correctQuestion = exam.questionsSuccess;
+			},
+			error : function(resp) {
+
+			}
+		});
+		// TODO
+		// if (id == correctAnswer) {
+		// 	$(this).css('border-color', 'green');
+		// 	correctQuestion++;
+		// } else {
+		// 	$(this).css('border-color', 'red');
+		// }
 		answered = true;
 	}
 });

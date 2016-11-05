@@ -23,20 +23,24 @@ block content
 				h1 Statistiques
 				h1 Tests passés
 				table
-					tr
-						td Total
-						td#stats-quicktests
+					each qt in statistics.quicktests
+						tr
+							td Total
+							td#stats-quicktests
+								label= qt.questionsSuccess
+								label /
+								label= qt.questionsTotal
 				h1 Examens passés
 				table
-					tr
-						td CSS
-						td#stats-exams-css
-					tr
-						td HTML
-						td#stats-exams-html
-					tr
-						td JS
-						td#stats-exams-js
+					each ex in statistics.exams
+						tr
+							td= ex.domain
+							td
+								label= ex.questionsSuccess
+								label /
+								label= ex.questionsTotal
 					tr.total
 						td Moyenne totale
 						td#stats-exams-average
+							label= average
+							label %
